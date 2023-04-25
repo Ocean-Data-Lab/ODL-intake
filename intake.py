@@ -18,4 +18,10 @@ def open_ooi_lfhydrophones():
     return ds
 
 def open_ooi_DAS_SouthTx():
-    return
+    '''
+    requires environment variables
+    '''
+    # open zarr store
+    storage_options = {'account_name':'dasdata', 'account_key':os.environ['AZURE_KEY_dasdata']}
+    ds = xr.open_zarr('abfs://zarr/ooi_South_Tx.zarr/ooi_South_Tx.zarr', storage_options=storage_options)
+    return ds
