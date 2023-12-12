@@ -10,8 +10,17 @@ import pandas as pd
 
 def open_ooi_lfhydrophones():
     '''
-    requires envionment variables
+    requires envionment variable AZURE_SAS_TOKEN_ooidata
+    To create the environment variable add the following line to your .bashrc (or .zshrc) file
+    export AZURE_SAS_TOKEN_ooidata='<your token here>'
+
+    After restarting your terminal, you can check that the environment variable is set by typing
+    echo $AZURE_SAS_TOKEN_ooidata
+
+
     '''
+    # TODO figure out how to handle controlled acces
+    
     account_key = os.environ['AZURE_KEY_ooidata']
     storage_options={'account_name': 'ooidata', 'account_key': account_key}
     ds = xr.open_zarr('abfs://lfhydrophonezarr/ooi_lfhydrophones.zarr', storage_options=storage_options)
