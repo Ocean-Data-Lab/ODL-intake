@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [project]
@@ -31,16 +31,19 @@ Documentation = "https://github.com/unknown/odlintake#readme"
 Issues = "https://github.com/unknown/odlintake/issues"
 Source = "https://github.com/unknown/odlintake"
 
+[tool.hatch.build.hooks.vcs]
+version-file = "_version.py"
+
+
 [tool.hatch.version]
-path = "src/odlintake/__about__.py"
+source="vcs"
+vcs="git"
 
 [tool.hatch.envs.default]
 dependencies = [
   "coverage[toml]>=6.5",
   "pytest",
-  "setuptools_scm"
 ]
-
 [tool.hatch.envs.default.scripts]
 test = "pytest {args:tests}"
 test-cov = "coverage run -m pytest {args:tests}"
